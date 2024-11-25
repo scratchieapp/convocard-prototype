@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useState } from 'react';
-import { Camera, Mic, Users, Plus, Check, X, AlertTriangle } from 'lucide-react';
+import Image from 'next/image';
+import { Camera, Mic, Users, Plus, Check, X } from 'lucide-react';
 
 const ConvoCardCreation = () => {
   const [step, setStep] = useState(1);
