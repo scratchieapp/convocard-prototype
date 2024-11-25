@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from 'react';
 import { Camera, Mic, Users, Plus, Check, X, AlertTriangle } from 'lucide-react';
 
