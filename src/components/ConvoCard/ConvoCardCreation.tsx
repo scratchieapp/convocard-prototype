@@ -23,6 +23,9 @@ const ConvoCardCreation = () => {
         return (
           <div className="space-y-4">
             <h2 className="text-lg font-bold">What work are you doing?</h2>
+            {selectedWorkType && (
+              <p className="text-sm text-blue-600">Selected: {selectedWorkType}</p>
+            )}
             <div className="grid grid-cols-2 gap-2">
               {recentWorkTypes.map((type) => (
                 <button 
@@ -31,7 +34,8 @@ const ConvoCardCreation = () => {
                     setSelectedWorkType(type);
                     setStep(2);
                   }}
-                  className="p-3 text-left border rounded-lg hover:bg-blue-50 focus:ring-2 focus:ring-blue-500"
+                  className={`p-3 text-left border rounded-lg hover:bg-blue-50 focus:ring-2 focus:ring-blue-500 
+                    ${selectedWorkType === type ? 'bg-blue-50 border-blue-500' : ''}`}
                 >
                   {type}
                 </button>
@@ -116,6 +120,11 @@ const ConvoCardCreation = () => {
         return (
           <div className="space-y-4">
             <h2 className="text-lg font-bold">Add optional details</h2>
+            {safetyStatus !== null && (
+              <p className={`text-sm ${safetyStatus ? 'text-green-600' : 'text-red-600'}`}>
+                Safety Status: {safetyStatus ? 'Safe to proceed' : 'Issues found'}
+              </p>
+            )}
             <div className="space-y-2">
               <button className="flex items-center w-full p-3 border rounded-lg hover:bg-gray-50">
                 <Mic className="w-5 h-5 mr-2" />
