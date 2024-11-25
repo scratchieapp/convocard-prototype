@@ -6,9 +6,9 @@ import { Camera, Mic, Users, Plus, Check, X } from 'lucide-react';
 
 const ConvoCardCreation = () => {
   const [step, setStep] = useState(1);
-  const [workType, setWorkType] = useState('');
+  const [selectedWorkType, setSelectedWorkType] = useState('');
   const [hasPhoto, setHasPhoto] = useState(false);
-  const [isSafe, setIsSafe] = useState(null);
+  const [safetyStatus, setSafetyStatus] = useState<boolean | null>(null);
   
   const recentWorkTypes = [
     'Concrete Pour',
@@ -28,7 +28,7 @@ const ConvoCardCreation = () => {
                 <button 
                   key={type}
                   onClick={() => {
-                    setWorkType(type);
+                    setSelectedWorkType(type);
                     setStep(2);
                   }}
                   className="p-3 text-left border rounded-lg hover:bg-blue-50 focus:ring-2 focus:ring-blue-500"
@@ -61,8 +61,14 @@ const ConvoCardCreation = () => {
                   <span className="text-sm text-gray-500">Take Photo</span>
                 </button>
               ) : (
-                <div className="w-full h-full bg-gray-200 rounded-lg">
-                  <img src="/api/placeholder/400/320" alt="Work area" className="w-full h-full object-cover rounded-lg" />
+                <div className="w-full h-full bg-gray-200 rounded-lg relative">
+                  <Image 
+                    src="/api/placeholder/400/320" 
+                    alt="Work area" 
+                    fill
+                    className="object-cover rounded-lg"
+                    sizes="(max-width: 768px) 100vw, 400px"
+                  />
                 </div>
               )}
             </div>
@@ -84,7 +90,7 @@ const ConvoCardCreation = () => {
             <div className="grid grid-cols-2 gap-4">
               <button 
                 onClick={() => {
-                  setIsSafe(true);
+                  setSafetyStatus(true);
                   setStep(4);
                 }}
                 className="p-4 border rounded-lg hover:bg-green-50 focus:ring-2 focus:ring-green-500 flex flex-col items-center"
@@ -94,7 +100,7 @@ const ConvoCardCreation = () => {
               </button>
               <button 
                 onClick={() => {
-                  setIsSafe(false);
+                  setSafetyStatus(false);
                   setStep(4);
                 }}
                 className="p-4 border rounded-lg hover:bg-red-50 focus:ring-2 focus:ring-red-500 flex flex-col items-center"
